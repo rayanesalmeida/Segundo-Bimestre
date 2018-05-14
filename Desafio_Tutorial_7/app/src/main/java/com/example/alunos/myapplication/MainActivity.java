@@ -1,5 +1,8 @@
 package com.example.alunos.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,11 +12,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.alunos.myapplication.model.Pessoa;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Pessoa> lista = new ArrayList<>();
 
     private DrawerLayout drawerLayout;
 
@@ -28,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame, f);
         transaction.addToBackStack(null);
         transaction.commit();
+
+
     }
 
     private void configureToolbar() {
@@ -87,6 +102,32 @@ public class MainActivity extends AppCompatActivity {
             //manage other entries if you have it...
         }
         return true;
+    }
+
+    public void salvar(View v){
+        SharedPreferences arquivo = getPreferences(Context.MODE_PRIVATE);
+        EditText editNome = (EditText)findViewById(R.id.editName);
+        String name = editNome.getText().toString();
+        Log.d("editName",name);
+        if(name.matches("")  ){
+            Toast toast = Toast.makeText(this, "Digite algo...", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        SharedPreferences.Editor editor = arquivo.edit();
+        editor.putString("nome", name);
+        editor.commit();
+        editNome.setText("");
+
+        lista.add(new Pessoa(name));
+    }
+
+    public void mostrarLista(View v){
+        Intent it = new Intent(this, mostraListaDinamica.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("contatos", lista);
+        it.putExtras(bundle);
+        startActivity(it);
     }
 }
 

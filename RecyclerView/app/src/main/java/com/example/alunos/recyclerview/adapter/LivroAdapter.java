@@ -33,11 +33,6 @@ public class LivroAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public int getItemCount(){
-        return lista.size();
-    }
-
-    @Override
     public void onBindViewHolder(
             @NonNull RecyclerView.ViewHolder holder, int position
     ){
@@ -46,5 +41,10 @@ public class LivroAdapter extends RecyclerView.Adapter{
         theHolder.titulo.setText(livro.getTitulo());
         theHolder.autor.setText(livro.getAutor());
         theHolder.descricao.setText(livro.getDescricao());
+    }
+
+    @Override
+    public int getItemCount(){
+        return lista.size();
     }
 }
