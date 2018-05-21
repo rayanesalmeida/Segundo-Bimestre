@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.alunos.recyclerview.R;
+
 public class LivroViewHolder extends RecyclerView.ViewHolder {
     final TextView titulo;
     final TextView autor;

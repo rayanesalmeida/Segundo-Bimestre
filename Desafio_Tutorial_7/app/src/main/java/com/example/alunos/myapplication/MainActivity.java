@@ -122,12 +122,8 @@ public class MainActivity extends AppCompatActivity {
         lista.add(new Pessoa(name));
     }
 
-    public void mostrarLista(View v){
-        Intent it = new Intent(this, mostraListaDinamica.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("contatos", lista);
-        it.putExtras(bundle);
-        startActivity(it);
+    public ArrayList<Pessoa> getLista(){
+        return lista;
     }
 }
 
