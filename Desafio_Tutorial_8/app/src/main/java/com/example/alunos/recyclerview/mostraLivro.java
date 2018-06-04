@@ -2,6 +2,7 @@ package com.example.alunos.recyclerview;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,15 +25,15 @@ public class mostraLivro extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        /*try{
+        try{
             ArrayList<Livro> lista = bundle.getParcelableArrayList(
                     "contatos");
-            PessoaAdapter adapter = new PessoaAdapter(
-                    mostraLivro.this, listaLivros);
+            Log.d("tamanho", Integer.toString(lista.size()));
+            LivroAdapter adapter = new LivroAdapter(
+                    lista, getBaseContext());
             rview.setAdapter(adapter);
             RecyclerView.LayoutManager layout = new LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false);*/
-
+                    LinearLayoutManager.VERTICAL, false);
             rview.setLayoutManager(layout);
         }
         catch (Exception e){

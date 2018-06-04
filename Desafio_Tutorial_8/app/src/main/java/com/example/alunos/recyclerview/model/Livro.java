@@ -3,7 +3,7 @@ package com.example.alunos.recyclerview.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Livro {
+public class Livro implements Parcelable {
 
     private String titulo;
     private String autor;
@@ -45,7 +45,7 @@ public class Livro {
         descricao = in.readString();
     }
 
-    /*@Override
+    @Override
     public int describeContents(){
         return 0;
     }
@@ -55,7 +55,7 @@ public class Livro {
         dest.writeString(titulo);
         dest.writeString(autor);
         dest.writeString(descricao);
-    }*/
+    }
 
     @SuppressWarnings("unused")
     public static final Parcelable.Creator<Livro> CREATOR =
@@ -72,4 +72,3 @@ public class Livro {
             };
 }
 
-}
