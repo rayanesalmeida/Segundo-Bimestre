@@ -66,15 +66,34 @@ public class MainActivity extends AppCompatActivity {
         linha3.setGravity(Gravity.CENTER_HORIZONTAL);
         //Botão alinhado a direita
         Button salvar = new Button(this);
-        salvar.setText("Salvar: ");
-        //salvar.setOnClickListener(this);
+        salvar.setText("Salvar ");
+        salvar.setOnClickListener(new View.OnClickListener() {
+                                        public void onClick(View v) {
+                                            SharedPreferences arquivo = getPreferences(Context.MODE_PRIVATE);
+                                            String name = tnome.getText().toString();
+                                            String telefone = ttelefone.getText().toString();
+                                            if (name.matches("") && telefone.matches("")) {
+                                                Toast toast = Toast.makeText(MainActivity.this,
+                                                        "Digite algo...", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                                return;
+                                            }
+                                            SharedPreferences.Editor editor = arquivo.edit();
+                                            editor.putString("nome", name);
+                                            editor.putString("telefone", telefone);
+                                            editor.commit();
+                                            tnome.setText("");
+                                            ttelefone.setText("");
+
+                                            lista.add(new Pessoa(name, telefone));
+                                        }
+                                    });
         linha3.addView(salvar);
 
         TableRow linha4 = new TableRow(this);
         linha4.setGravity(Gravity.CENTER_HORIZONTAL);
         Button carregar = new Button(this);
-        carregar.setText("Carregar: ");
-        //carregar.setOnClickListener(this);
+        carregar.setText("Carregar ");
         linha4.addView(carregar);
 
         //Adiciona as linhas
@@ -86,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
         //Informa o layout
         setContentView(tabela);
     }
-    public void salvar(View V){
+}
+    /*public void salvar(View V){
         SharedPreferences arquivo = getPreferences(Context.MODE_PRIVATE);
         String name = tnome.getText().toString();
         String telefone  = ttelefone.getText().toString();
@@ -106,10 +126,10 @@ public class MainActivity extends AppCompatActivity {
         lista.add(new Pessoa(name, telefone));
     }
 
-    /*@Override
+    @Override
     public void onClick(View v){
         salvar();
-    }*/
+    }
 
     public void mostrarLista(View v){
         Intent it = new Intent(this, Main2Activity.class);
@@ -118,4 +138,4 @@ public class MainActivity extends AppCompatActivity {
         it.putExtras(bundle);
         startActivity(it);
     }
-}
+}*/

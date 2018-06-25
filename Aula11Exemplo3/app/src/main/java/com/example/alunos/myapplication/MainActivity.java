@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         LinearLayout layout = findViewById(R.id.layout1);
         for (int i = 0; i < 100; i++){
             //Instancia o TextView inflando o arquivo de layout

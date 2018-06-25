@@ -27,7 +27,7 @@ public class mostraLivro extends AppCompatActivity {
 
         try{
             ArrayList<Livro> lista = bundle.getParcelableArrayList(
-                    "contatos");
+                    "livros");
             Log.d("tamanho", Integer.toString(lista.size()));
             LivroAdapter adapter = new LivroAdapter(
                     lista, getBaseContext());
