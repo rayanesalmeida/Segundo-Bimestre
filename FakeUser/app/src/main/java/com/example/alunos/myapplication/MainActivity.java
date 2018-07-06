@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         GetJson download = new GetJson();
 
-        load = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        //load = (ProgressBar) findViewById(R.id.simpleProgressBar);
 
         nome = (TextView) findViewById(R.id.textNome);
         sobrenome = (TextView) findViewById(R.id.textSobrenome);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute(){
-            load.setVisibility(View.VISIBLE);
+            //load.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             nascimento.setText(pessoa.getNascimento());
             telefone.setText(pessoa.getTelefone());
             foto.setImageBitmap(pessoa.getFoto());
-            load.setVisibility(View.GONE);
+            //load.setVisibility(View.GONE);
         }
     }
 }

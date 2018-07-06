@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView nascimento;
     private TextView telefone;
     private ImageView foto;
-    private ProgressBar load;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         GetJson download = new GetJson();
 
-        load = (ProgressBar) findViewById(R.id.simpleProgressBar);
+        //load = (ProgressBar) findViewById(R.id.simpleProgressBar);
 
         nome = (TextView) findViewById(R.id.textNome);
         sobrenome = (TextView) findViewById(R.id.textSobrenome);
@@ -48,18 +47,23 @@ public class MainActivity extends AppCompatActivity {
         download.execute();
     }
 
+    public void carregar(View v){
+        GetJson download = new GetJson();
+        download.execute();
+    }
+
     private class GetJson extends AsyncTask<Void, Void, FakeUser> {
 
         @Override
         protected void onPreExecute(){
-            load.setVisibility(View.VISIBLE);
+            //load.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected FakeUser doInBackground(Void... params){
             Utils util = new Utils();
 
-            return util.getInformacao("https://randomuser.me");
+            return util.getInformacao("https://randomuser.me/api/0.7");
         }
 
         @Override
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             nascimento.setText(pessoa.getNascimento());
             telefone.setText(pessoa.getTelefone());
             foto.setImageBitmap(pessoa.getFoto());
-            load.setVisibility(View.GONE);
+            //load.setVisibility(View.GONE);
         }
     }
 }
